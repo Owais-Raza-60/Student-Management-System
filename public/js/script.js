@@ -760,11 +760,16 @@ async function confirmDeleteCourse() {
 }
 
 function showLogin() {
+
     const loginForm = document.getElementById("loginForm");
     const registerForm = document.getElementById("registerForm");
+    const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+    const resetPasswordForm = document.getElementById("resetPasswordForm");
 
     if (loginForm) loginForm.classList.remove("hidden");
     if (registerForm) registerForm.classList.add("hidden");
+    if (forgotPasswordForm) forgotPasswordForm.classList.add("hidden");
+    if (resetPasswordForm) resetPasswordForm.classList.add("hidden");
 
     document.querySelectorAll(".role-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.form === "login");
@@ -772,17 +777,21 @@ function showLogin() {
 }
 
 function showRegister() {
+
     const loginForm = document.getElementById("loginForm");
     const registerForm = document.getElementById("registerForm");
+    const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+    const resetPasswordForm = document.getElementById("resetPasswordForm");
 
     if (registerForm) registerForm.classList.remove("hidden");
     if (loginForm) loginForm.classList.add("hidden");
+    if (forgotPasswordForm) forgotPasswordForm.classList.add("hidden");
+    if (resetPasswordForm) resetPasswordForm.classList.add("hidden");
 
     document.querySelectorAll(".role-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.form === "register");
     });
 }
-
 function showForgotPassword() {
 
     document.getElementById("loginForm").classList.add("hidden");
@@ -892,6 +901,9 @@ async function changePassword() {
         showToast("Password changed successfully");
 
         document.getElementById("resetPasswordForm").classList.add("hidden");
+        document.getElementById("newPassword").value = "";
+        document.getElementById("forgotEmail").value = "";
+        forgotEmail = "";
 
         showLogin();
 
