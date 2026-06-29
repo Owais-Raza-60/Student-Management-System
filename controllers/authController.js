@@ -40,11 +40,18 @@ exports.login = async (req, res) => {
     }
 };
 //----- Registration Controller -----//
+const TEACHER_ACCESS_CODE = "TCH-786";    // Teacher access code for registration
 exports.register = async (req, res) => {
     try {
 
-        const { name, email, password, role } = req.body;
-
+       const {
+    name,
+    email,
+    password,
+    role,
+    teacherCode
+    } = req.body;
+   
         // Check if email already exists
         const existingUser = await User.findOne({ email });
 
@@ -52,6 +59,20 @@ exports.register = async (req, res) => {
             return res.status(400).json({
                 message: "User already exists"
             });
+        }
+        
+         
+        // Validate Teacher Access Code
+        if (role === "Teacher") {
+
+            if (teacherCode !== TEACHER_ACCESS_CODE) {
+
+             return res.status(400).json({
+            message: "Invalid Teacher Access Code"
+        });
+
+            }
+
         }
 
         // Hash password

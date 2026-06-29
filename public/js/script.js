@@ -221,21 +221,48 @@ fill="none" stroke="currentColor" stroke-width="2">
   }
 }
 
+function toggleTeacherCode() {
+
+    const role = document.getElementById("registerRole").value;
+
+    const teacherField =
+        document.getElementById("teacherCodeGroup");
+
+    if (role === "Teacher") {
+
+        teacherField.classList.remove("hidden");
+
+    }
+    else {
+
+        teacherField.classList.add("hidden");
+
+        document.getElementById("teacherCode").value = "";
+
+        clearFieldError("teacherCode");
+
+    }
+
+}
+
 async function handleRegister() {
 
     const nameInput = document.getElementById("registerName");
     const emailInput = document.getElementById("registerEmail");
     const passwordInput = document.getElementById("registerPassword");
     const roleInput = document.getElementById("registerRole");
+    const teacherCodeInput = document.getElementById("teacherCode");
 
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
     const role = roleInput.value;
+    const teacherCode = teacherCodeInput.value.trim();
 
     clearFieldError("registerName");
     clearFieldError("registerEmail");
     clearFieldError("registerPassword");
+    clearFieldError("teacherCode");
 
     if (!name) {
         showFieldError("registerName", "Full name is required");
@@ -248,6 +275,14 @@ async function handleRegister() {
     }
 
     if (!name || !email || !password) {
+        return;
+    }
+    if (role === "Teacher" && !teacherCode) {
+
+    showFieldError(
+        "teacherCode",
+        "Teacher access code is required"
+    );
         return;
     }
 
@@ -267,7 +302,8 @@ async function handleRegister() {
                     name,
                     email,
                     password,
-                    role
+                    role,
+                    teacherCode
                 })
 
             });

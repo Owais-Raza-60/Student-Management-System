@@ -179,7 +179,7 @@ ul { list-style: none; }
 
 .login-form-panel {
   position: relative;
-  min-height: 420px;
+  min-height: 520px;
   overflow: hidden;
 }
 .login-form {

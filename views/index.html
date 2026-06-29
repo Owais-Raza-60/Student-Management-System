@@ -157,13 +157,38 @@
             <label for="registerRole">Role</label>
             <div class="input-wrap select-wrap">
               <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-              <select id="registerRole">
+              <select id="registerRole" onchange="toggleTeacherCode()">
                 <option value="Student">Student</option>
                 <option value="Teacher">Teacher</option>
               </select>
             </div>
             <p class="field-error"></p>
           </div>
+          <div id="teacherCodeGroup" class="form-group hidden">
+
+    <label for="teacherCode">Teacher Access Code</label>
+
+    <div class="input-wrap">
+
+        <svg class="input-icon" width="18" height="18"
+             viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+
+        </svg>
+
+        <input
+            type="password"
+            id="teacherCode"
+            placeholder="Enter teacher access code">
+
+    </div>
+
+    <p class="field-error"></p>
+
+</div>
           <button class="btn-login" onclick="handleRegister()">
             <span>Sign Up</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
